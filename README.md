@@ -1,5 +1,9 @@
 # Codex via WhatsApp
 
+<p align="center">
+  <img src="./readme.svg" alt="Codex via WhatsApp" width="720" />
+</p>
+
 Lokales Gateway, das WhatsApp-Nachrichten (nur von deiner Nummer) an `codex exec` weiterleitet.
 
 ## Architektur

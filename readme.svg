@@ -1,0 +1,324 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+    <defs>
+        <!-- Gradients for Ambient Background -->
+        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#050A0E" />
+            <stop offset="100%" stop-color="#0D161C" />
+        </linearGradient>
+        <linearGradient id="waAiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#25D366" />
+            <stop offset="50%" stop-color="#128C7E" />
+            <stop offset="100%" stop-color="#005C4B" />
+        </linearGradient>
+        <!-- Phone Frame Holographic Gradient -->
+        <linearGradient id="phoneBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#25D366" stop-opacity="0.9" />
+            <stop offset="50%" stop-color="#1F2C34" stop-opacity="0.6" />
+            <stop offset="100%" stop-color="#128C7E" stop-opacity="0.9" />
+        </linearGradient>
+
+        <!-- Filters -->
+        <filter id="neonGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur stdDeviation="15" result="blur" />
+            <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+            </feMerge>
+        </filter>
+        <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="15" stdDeviation="18" flood-color="#000" flood-opacity="0.85"/>
+        </filter>
+
+        <!-- Clip Paths -->
+        <clipPath id="phoneClip">
+            <rect x="265" y="30" width="270" height="540" rx="42" />
+        </clipPath>
+        <clipPath id="avatarClip">
+            <circle cx="290" cy="92" r="16" />
+        </clipPath>
+
+        <!-- CSS Animations -->
+        <style>
+            /* Ambient Animations */
+            .float-group { animation: floatDevice 6s ease-in-out infinite; }
+            .spin-slow { animation: spin 25s linear infinite; transform-origin: 400px 300px; }
+            .spin-slow-reverse { animation: spinReverse 30s linear infinite; transform-origin: 400px 300px; }
+            .particle { animation: floatParticle 8s ease-in-out infinite; }
+
+            /* Sequence Animations (18s Loop) */
+            .msg-1 { opacity: 0; animation: seq1 18s forwards infinite; }
+            .msg-2 { opacity: 0; animation: seq2 18s forwards infinite; }
+            .msg-3 { opacity: 0; animation: seq3 18s forwards infinite; }
+            .msg-4 { opacity: 0; animation: seq4 18s forwards infinite; }
+
+            /* Code Typing Animations */
+            .blocker {
+                fill: #013A2E; 
+                transform-origin: 505px 0px; 
+            }
+            .blocker-1 { animation: type1 18s forwards infinite; }
+            .blocker-2 { animation: type2 18s forwards infinite; }
+            .blocker-3 { animation: type3 18s forwards infinite; }
+            .blocker-4 { animation: type4 18s forwards infinite; }
+            .blocker-5 { animation: type5 18s forwards infinite; }
+
+            @keyframes floatDevice {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-12px); }
+            }
+            @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+            @keyframes spinReverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+            @keyframes floatParticle {
+                0% { transform: translateY(0px) scale(1); opacity: 0; }
+                20% { opacity: 0.5; }
+                50% { transform: translateY(-40px) scale(1.1); opacity: 0.8; }
+                80% { opacity: 0.5; }
+                100% { transform: translateY(-80px) scale(1); opacity: 0; }
+            }
+
+            /* Keyframes - Message Sequence (18s) */
+            @keyframes seq1 { 
+                0%, 4% { opacity: 0; transform: translateY(10px); }
+                6%, 92% { opacity: 1; transform: translateY(0); }
+                95%, 100% { opacity: 0; transform: translateY(-10px); }
+            }
+            @keyframes seq2 { 
+                0%, 13% { opacity: 0; transform: translateY(10px); }
+                15%, 92% { opacity: 1; transform: translateY(0); }
+                95%, 100% { opacity: 0; transform: translateY(-10px); }
+            }
+            @keyframes seq3 { 
+                0%, 21% { opacity: 0; transform: translateY(10px); }
+                23%, 92% { opacity: 1; transform: translateY(0); }
+                95%, 100% { opacity: 0; transform: translateY(-10px); }
+            }
+            @keyframes seq4 { 
+                0%, 31% { opacity: 0; transform: translateY(15px); }
+                33%, 92% { opacity: 1; transform: translateY(0); }
+                95%, 100% { opacity: 0; transform: translateY(-15px); }
+            }
+
+            /* Code Typing Reveal */
+            @keyframes type1 { 0%, 35% { transform: scaleX(1); } 38%, 95% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+            @keyframes type2 { 0%, 38% { transform: scaleX(1); } 41%, 95% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+            @keyframes type3 { 0%, 41% { transform: scaleX(1); } 44%, 95% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+            @keyframes type4 { 0%, 44% { transform: scaleX(1); } 47%, 95% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+            @keyframes type5 { 0%, 47% { transform: scaleX(1); } 50%, 95% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+        </style>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#bgGrad)" />
+
+    <g opacity="0.05">
+        <path d="M 0 100 L 800 100 M 0 200 L 800 200 M 0 300 L 800 300 M 0 400 L 800 400 M 0 500 L 800 500" stroke="#25D366" stroke-width="1"/>
+        <path d="M 100 0 L 100 600 M 200 0 L 200 600 M 300 0 L 300 600 M 400 0 L 400 600 M 500 0 L 500 600 M 600 0 L 600 600 M 700 0 L 700 600" stroke="#128C7E" stroke-width="1"/>
+    </g>
+
+    <g filter="url(#neonGlow)">
+        <g class="spin-slow" opacity="0.3">
+            <circle cx="400" cy="300" r="270" fill="none" stroke="url(#waAiGrad)" stroke-width="1.5" stroke-dasharray="4 16" />
+            <circle cx="400" cy="300" r="240" fill="none" stroke="#25D366" stroke-width="2" stroke-dasharray="80 60 20 60" />
+            <path d="M 400 60 A 240 240 0 0 1 640 300" fill="none" stroke="#128C7E" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="spin-slow-reverse" opacity="0.2">
+            <circle cx="400" cy="300" r="290" fill="none" stroke="#25D366" stroke-width="2" stroke-dasharray="100 150 50 50" />
+            <circle cx="400" cy="300" r="210" fill="none" stroke="#128C7E" stroke-width="1" stroke-dasharray="10 5" />
+        </g>
+    </g>
+
+    <g class="particle" style="animation-delay: 0s;">
+        <text x="140" y="420" fill="#25D366" font-family="monospace" font-size="14" opacity="0.5" filter="url(#neonGlow)">status: running</text>
+    </g>
+    <g class="particle" style="animation-delay: -4s;">
+        <text x="610" y="380" fill="#128C7E" font-family="monospace" font-size="18" opacity="0.6" filter="url(#neonGlow)">/code</text>
+    </g>
+    <g class="particle" style="animation-delay: -7s;">
+        <path d="M 160 220 L 180 240 L 160 260" fill="none" stroke="#25D366" stroke-width="2" opacity="0.4"/>
+    </g>
+    <g class="particle" style="animation-delay: -2s;">
+        <text x="640" y="180" fill="#25D366" font-family="monospace" font-size="16" opacity="0.4" filter="url(#neonGlow)">{ }</text>
+    </g>
+
+    <!-- ========================================== -->
+    <!-- CENTRAL IPHONE DEVICE                      -->
+    <!-- ========================================== -->
+    <g class="float-group" filter="url(#dropShadow)">
+        <g clip-path="url(#phoneClip)">
+            <rect x="265" y="30" width="270" height="540" fill="#0B141A" />
+            
+            <g stroke="#1F2C34" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="300" cy="200" r="10" />
+                <path d="M 296 197 L 296 198 M 304 197 L 304 198 M 295 203 Q 300 207 305 203" />
+                <path d="M 480 320 L 480 335 A 5 5 0 0 0 490 335 L 490 320 Z M 490 323 A 4 4 0 0 1 490 330" />
+                <path d="M 320 450 L 340 430 L 345 435 L 325 455 Z" />
+                <path d="M 420 150 L 430 160 M 430 150 L 420 160" />
+                <path d="M 500 420 L 510 420 M 505 415 L 505 425" />
+            </g>
+
+            <!-- ============================== -->
+            <!-- CHAT MESSAGE SEQUENCE          -->
+            <!-- ============================== -->
+            <!-- All bubbles have right edge at x=510 (keeps them away from the bezel) -->
+            <g font-family="'Segoe UI', Helvetica, sans-serif" font-size="12">
+                
+                <!-- 1. User Message (Has top tail, grouped with others) -->
+                <g class="msg-1">
+                    <!-- Tail (Now cleanly attached to the right edge at 510) -->
+                    <polygon points="510,140 518,140 510,148" fill="#005C4B" />
+                    <!-- Bubble (rx adjusted for grouping) -->
+                    <path d="M 340 140 L 510 140 L 510 168 A 6 6 0 0 1 504 174 L 348 174 A 8 8 0 0 1 340 166 Z" fill="#005C4B" />
+                    <text x="350" y="160" fill="#E9EDEF">create a quick python api</text>
+                    <!-- Ticks & Time (Aligned Bottom Right) -->
+                    <text x="470" y="168" fill="#8696A0" font-size="9">10:42</text>
+                    <g transform="translate(492, 160)" stroke="#53BDEB" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M0,4 L3,7 L8,0 M4,7 L9,0"/>
+                    </g>
+                </g>
+
+                <!-- 2. System: Queued (Grouped Middle) -->
+                <g class="msg-2">
+                    <path d="M 300 178 L 504 178 A 6 6 0 0 1 510 184 L 510 206 A 6 6 0 0 1 504 212 L 308 212 A 8 8 0 0 1 300 204 Z" fill="#005C4B" />
+                    <text x="310" y="198" fill="#E9EDEF">Queued <tspan fill="#4ADE80" font-weight="600">#1024-1</tspan> (position 1).</text>
+                    <text x="470" y="206" fill="#8696A0" font-size="9">10:42</text>
+                    <g transform="translate(492, 198)" stroke="#53BDEB" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M0,4 L3,7 L8,0 M4,7 L9,0"/>
+                    </g>
+                </g>
+
+                <!-- 3. System: Running (Grouped Middle) -->
+                <g class="msg-3">
+                    <path d="M 345 216 L 504 216 A 6 6 0 0 1 510 222 L 510 244 A 6 6 0 0 1 504 250 L 353 250 A 8 8 0 0 1 345 242 Z" fill="#005C4B" />
+                    <text x="355" y="236" fill="#E9EDEF">Running <tspan fill="#4ADE80" font-weight="600">#1024-1</tspan>...</text>
+                    <text x="470" y="244" fill="#8696A0" font-size="9">10:42</text>
+                    <g transform="translate(492, 236)" stroke="#53BDEB" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M0,4 L3,7 L8,0 M4,7 L9,0"/>
+                    </g>
+                </g>
+
+                <!-- 4. Bot Result & Live Code Block (Grouped Bottom) -->
+                <g class="msg-4">
+                    <path d="M 265 254 L 504 254 A 6 6 0 0 1 510 260 L 510 420 A 8 8 0 0 1 502 428 L 273 428 A 8 8 0 0 1 265 420 Z" fill="#005C4B" />
+                    
+                    <text x="275" y="275" fill="#E9EDEF">Done <tspan fill="#4ADE80" font-weight="600">#1024-1</tspan> in <tspan fill="#4ADE80" font-weight="600">4150</tspan> ms.</text>
+                    <text x="275" y="293" fill="#E9EDEF">Updated: <tspan fill="#A5D6FF" font-family="monospace">/app/workspace/api.py</tspan></text>
+
+                    <!-- Code Block Background -->
+                    <rect x="275" y="303" width="225" height="100" rx="6" fill="#013A2E" stroke="#004d3e" stroke-width="1"/>
+                    
+                    <!-- Code Lines (Brightened syntax for better contrast) -->
+                    <text x="283" y="321" font-family="monospace" font-size="10.5">
+                        <tspan fill="#D288E8">from</tspan> <tspan fill="#F8FAFC">flask</tspan> <tspan fill="#D288E8">import</tspan> <tspan fill="#79C0FF">Flask</tspan>
+                    </text>
+                    <text x="283" y="339" font-family="monospace" font-size="10.5">
+                        <tspan fill="#F8FAFC">app = </tspan><tspan fill="#79C0FF">Flask</tspan><tspan fill="#F8FAFC">(</tspan><tspan fill="#A3D188">__name__</tspan><tspan fill="#F8FAFC">)</tspan>
+                    </text>
+                    <text x="283" y="357" font-family="monospace" font-size="10.5">
+                        <tspan fill="#D288E8">@app</tspan><tspan fill="#F8FAFC">.route(</tspan><tspan fill="#A3D188">'/'</tspan><tspan fill="#F8FAFC">)</tspan>
+                    </text>
+                    <text x="283" y="375" font-family="monospace" font-size="10.5">
+                        <tspan fill="#D288E8">def</tspan> <tspan fill="#79C0FF">hello_ai</tspan><tspan fill="#F8FAFC">():</tspan>
+                    </text>
+                    <text x="283" y="393" font-family="monospace" font-size="10.5">
+                        <tspan fill="#F8FAFC">    </tspan><tspan fill="#D288E8">return</tspan> <tspan fill="#A3D188">"Online"</tspan>
+                    </text>
+
+                    <!-- Typewriter Mask Blockers -->
+                    <rect x="280" y="311" width="220" height="13" class="blocker blocker-1"/>
+                    <rect x="280" y="329" width="220" height="13" class="blocker blocker-2"/>
+                    <rect x="280" y="347" width="220" height="13" class="blocker blocker-3"/>
+                    <rect x="280" y="365" width="220" height="13" class="blocker blocker-4"/>
+                    <rect x="280" y="383" width="220" height="13" class="blocker blocker-5"/>
+                    
+                    <!-- Bottom Info -->
+                    <text x="470" y="420" fill="#8696A0" font-size="9">10:42</text>
+                    <g transform="translate(492, 412)" stroke="#53BDEB" fill="none" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M0,4 L3,7 L8,0 M4,7 L9,0"/>
+                    </g>
+                </g>
+            </g>
+
+            <!-- ============================== -->
+            <!-- HEADER (Top Bar & Status)      -->
+            <!-- ============================== -->
+            <g>
+                <rect x="265" y="30" width="270" height="90" fill="#111B21" />
+                
+                <!-- iPhone Status Bar Elements (Perfectly aligned with Dynamic Island Y-center: 53) -->
+                <text x="290" y="57" fill="#E9EDEF" font-family="'Segoe UI', Helvetica, sans-serif" font-size="12" font-weight="bold">10:42</text>
+                
+                <!-- Battery Icon (Center aligns with Y=53) -->
+                <rect x="496" y="48.5" width="18" height="9" rx="2.5" fill="none" stroke="#E9EDEF" stroke-width="1"/>
+                <rect x="498" y="50.5" width="12" height="5" rx="1.5" fill="#E9EDEF"/>
+                <path d="M 515 51.5 L 516 51.5 A 1 1 0 0 1 517 52.5 L 517 53.5 A 1 1 0 0 1 516 54.5 L 515 54.5" fill="#E9EDEF" />
+                
+                <!-- Wifi/Cellular -->
+                <circle cx="486" cy="53" r="1.5" fill="#E9EDEF" />
+                <path d="M 483 50 Q 486 48 489 50" fill="none" stroke="#E9EDEF" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M 480 47 Q 486 44 492 47" fill="none" stroke="#E9EDEF" stroke-width="1.5" stroke-linecap="round"/>
+
+                <!-- WhatsApp App Header -->
+                <g clip-path="url(#avatarClip)">
+                    <rect x="274" y="76" width="32" height="32" fill="#202C33" />
+                    <circle cx="290" cy="86" r="6" fill="#8696A0" />
+                    <path d="M 278 102 Q 290 90 302 102" fill="#8696A0" />
+                </g>
+
+                <text x="315" y="88" fill="#E9EDEF" font-family="'Segoe UI', Helvetica, sans-serif" font-size="14" font-weight="600">Codex (You)</text>
+                <text x="315" y="103" fill="#8696A0" font-family="'Segoe UI', Helvetica, sans-serif" font-size="11">Message yourself</text>
+                
+                <circle cx="485" cy="88" r="4.5" fill="none" stroke="#A6B0B6" stroke-width="1.5" />
+                <path d="M 488 91 L 492 95" fill="none" stroke="#A6B0B6" stroke-width="1.5" stroke-linecap="round" />
+                
+                <circle cx="515" cy="82" r="1.5" fill="#A6B0B6" />
+                <circle cx="515" cy="88" r="1.5" fill="#A6B0B6" />
+                <circle cx="515" cy="94" r="1.5" fill="#A6B0B6" />
+                
+                <line x1="265" y1="120" x2="535" y2="120" stroke="#202C33" stroke-width="1" />
+            </g>
+
+            <!-- ============================== -->
+            <!-- FOOTER (Input Area)            -->
+            <!-- ============================== -->
+            <g>
+                <rect x="265" y="495" width="270" height="75" fill="#111B21" />
+                
+                <path d="M 275 520 L 285 520 M 280 515 L 280 525" fill="none" stroke="#8696A0" stroke-width="2" stroke-linecap="round"/>
+                
+                <rect x="295" y="502" width="195" height="36" rx="18" fill="#202C33" />
+                
+                <circle cx="310" cy="520" r="7" fill="none" stroke="#8696A0" stroke-width="1.2" />
+                <path d="M 307 518 L 307 519 M 313 518 L 313 519" fill="none" stroke="#8696A0" stroke-width="1.2" stroke-linecap="round" />
+                <path d="M 307 523 Q 310 526 313 523" fill="none" stroke="#8696A0" stroke-width="1.2" stroke-linecap="round" />
+
+                <text x="325" y="525" fill="#8696A0" font-family="'Segoe UI', Helvetica, sans-serif" font-size="13">Type a message</text>
+                
+                <path d="M 510 512 L 510 519" fill="none" stroke="#8696A0" stroke-width="2" stroke-linecap="round"/>
+                <path d="M 506 517 A 4 4 0 0 0 514 517" fill="none" stroke="#8696A0" stroke-width="1.5" stroke-linecap="round"/>
+                <path d="M 510 522 L 510 525" fill="none" stroke="#8696A0" stroke-width="1.5" stroke-linecap="round"/>
+                
+                <rect x="335" y="555" width="130" height="4" rx="2" fill="#E9EDEF" opacity="0.8" />
+            </g>
+
+            <!-- ============================== -->
+            <!-- DYNAMIC ISLAND                 -->
+            <!-- ============================== -->
+            <rect x="355" y="40" width="90" height="26" rx="13" fill="#000" />
+            <circle cx="425" cy="53" r="4.5" fill="#111" />
+            <circle cx="425" cy="53" r="1.5" fill="#1A1A2E" />
+
+        </g>
+        
+        <!-- ============================== -->
+        <!-- IPHONE HARDWARE FRAME          -->
+        <!-- ============================== -->
+        <rect x="265" y="30" width="270" height="540" rx="42" fill="none" stroke="url(#phoneBorder)" stroke-width="3" />
+        <rect x="266.5" y="31.5" width="267" height="537" rx="40.5" fill="none" stroke="#000" stroke-width="1.5" />
+        <rect x="263" y="28" width="274" height="544" rx="45" fill="none" stroke="#0B141A" stroke-width="1" />
+        
+        <!-- iPhone Side Buttons -->
+        <path d="M 263 105 L 263 125" fill="none" stroke="#1F2C34" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 263 145 L 263 185" fill="none" stroke="#1F2C34" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 263 200 L 263 240" fill="none" stroke="#1F2C34" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 537 170 L 537 230" fill="none" stroke="#1F2C34" stroke-width="3" stroke-linecap="round"/>
+    </g>
+</svg>
