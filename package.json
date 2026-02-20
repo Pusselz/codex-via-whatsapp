@@ -1,0 +1,27 @@
+{
+  "name": "codex-via-whatsapp",
+  "version": "0.1.0",
+  "description": "Codex via WhatsApp gateway for local Codex CLI control",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "check": "node --check src/config.js && node --check src/index.js",
+    "verify-config": "node src/index.js --verify-config"
+  },
+  "keywords": [
+    "whatsapp",
+    "gateway",
+    "codex",
+    "baileys",
+    "automation"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "@whiskeysockets/baileys": "^7.0.0-rc.9",
+    "dotenv": "^17.3.1",
+    "pino": "^10.3.1",
+    "qrcode-terminal": "^0.12.0"
+  }
+}
