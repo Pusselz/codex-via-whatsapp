@@ -4,71 +4,71 @@
   <img src="./readme.svg" alt="Codex via WhatsApp" width="720" />
 </p>
 
-Lokales Gateway, das WhatsApp-Nachrichten (nur von deiner Nummer) an `codex exec` weiterleitet.
+A local gateway that forwards WhatsApp messages (only from your number) to `codex exec`.
 
-## Architektur
+## Architecture
 
 1. WhatsApp linked device (QR) -> Baileys Socket
-2. Nummernfilter (`ALLOWED_WHATSAPP_NUMBER`)
+2. Number filter (`ALLOWED_WHATSAPP_NUMBER`)
 3. Queue + Runner
-4. `codex exec -C <WORKDIR> ...` auf deinem Rechner
-5. Antwort in WhatsApp zurueck
+4. `codex exec -C <WORKDIR> ...` on your machine
+5. Response sent back to WhatsApp
 
 ## Setup
 
-1. `.env` anlegen:
+1. Create `.env`:
    - `Copy-Item .env.example .env`
-2. In `.env` setzen:
-   - `ALLOWED_WHATSAPP_NUMBER` (deine Nummer, nur Ziffern, mit Landesvorwahl; `0049...` wird automatisch zu `49...` normalisiert)
-   - `CODEX_WORKDIR` (Ordner, den du per WhatsApp steuern willst)
-3. Dependencies installieren:
+2. Set values in `.env`:
+   - `ALLOWED_WHATSAPP_NUMBER` (your number, digits only, country code included; `0049...` is auto-normalized to `49...`)
+   - `CODEX_WORKDIR` (folder you want to control via WhatsApp)
+3. Install dependencies:
    - `npm install`
-4. Config pruefen:
+4. Verify config:
    - `npm run verify-config`
-5. Starten:
+5. Start:
    - `npm start`
-6. QR-Code im Terminal mit WhatsApp -> Verknuepfte Geraete scannen.
-7. Nur eine Instanz gleichzeitig starten (kein zweites `npm start` parallel).
+6. Scan the terminal QR code in WhatsApp -> Linked Devices.
+7. Run only one instance at a time (do not run `npm start` twice in parallel).
 
-## Nutzung
+## Usage
 
-- Jede normale Nachricht (ohne `/`) wird als Prompt an Codex gesendet.
-- Auch "Message yourself" ist moeglich (eigene Nummer), Echo-Loop durch Gateway-Antworten wird geblockt.
-- Steuerbefehle:
-  - `/help` (schnelle Uebersicht)
-  - `/guide` (Schritt-fuer-Schritt fuer Non-Tech)
+- Every normal message (without `/`) is sent as a prompt to Codex.
+- "Message yourself" is supported (your own number), and echo loops from gateway responses are blocked.
+- Commands:
+  - `/help` (quick overview)
+  - `/guide` (step-by-step for non-technical users)
   - `/status`
-  - `/session` (zeigt gespeicherte Codex-Session-ID)
-  - `/pwd` (zeigt aktuellen Codex-Workdir)
-  - `/cd <path>` (wechselt den Codex-Workdir)
-  - `/cd-reset` (setzt Workdir auf `.env`-Default zurueck)
-  - `/fav-list` (listet Favorite-Ordner)
-  - `/fav-add <name> <path>` (speichert Favorite-Ordner)
-  - `/fav-rm <name>` (entfernt Favorite-Ordner)
-  - `/fav <name>` (wechselt zum Favorite-Ordner)
-  - `/pc` (oeffnet Codex-Terminal auf deinem PC; resume wenn Session vorhanden)
-  - `/stop` (stoppt aktiven Run und leert Queue)
-  - `/new` (startet frischen Codex-Kontext)
+  - `/session` (show stored Codex session id)
+  - `/pwd` (show current Codex workdir)
+  - `/cd <path>` (change Codex workdir)
+  - `/cd-reset` (reset workdir to `.env` default)
+  - `/fav-list` (list favorite folders)
+  - `/fav-add <name> <path>` (save favorite folder)
+  - `/fav-rm <name>` (remove favorite folder)
+  - `/fav <name>` (switch to favorite folder)
+  - `/pc` (open Codex terminal on your PC; resume if session is available)
+  - `/stop` (stop active run and clear queue)
+  - `/new` (start a fresh Codex context)
 
-## Wichtige Hinweise
+## Important Notes
 
-- Dieses Setup nutzt WhatsApp Web via Baileys (OpenClaw-Ansatz), nicht die offizielle Meta Business API.
-- Inbound wird hart auf genau eine Nummer gefiltert.
-- Nur Direct Chats (`@s.whatsapp.net`) werden verarbeitet, keine Gruppen.
-- Session und Runtime-Dateien landen standardmaessig in `%USERPROFILE%\\memory\\whatsapp-codex`.
-- Codex-Kontext wird ueber `session id` gespeichert, damit du wie in einem fortlaufenden Chat arbeiten kannst.
-- Das Gateway setzt eine globale Lock-Datei unter `%TEMP%\\codex-via-whatsapp-<nummer>.lock`, damit nicht aus Versehen mehrere Instanzen parallel laufen.
-- Bei hartem Absturz ggf. einmal aufraeumen: `del %TEMP%\\codex-via-whatsapp-<nummer>.lock`
+- This setup uses WhatsApp Web via Baileys (OpenClaw-style), not the official Meta Business API.
+- Inbound processing is hard-filtered to one specific number.
+- Only direct chats (`@s.whatsapp.net`) are processed, no groups.
+- Session and runtime files are stored by default in `%USERPROFILE%\\memory\\whatsapp-codex`.
+- Codex context is persisted via `session id` so you can continue across messages.
+- The gateway uses a global lock file at `%TEMP%\\codex-via-whatsapp-<number>.lock` to prevent accidental parallel instances.
+- After a hard crash, you can clean it up with: `del %TEMP%\\codex-via-whatsapp-<number>.lock`
 
-## Validation (maschinencheckbar)
+## Validation (Machine-checkable)
 
-- Syntaxcheck: `npm run check`
-- Configcheck: `npm run verify-config`
+- Syntax check: `npm run check`
+- Config check: `npm run verify-config`
 
 ## Open Source
 
-- Lizenz: `MIT` (siehe `LICENSE`)
-- Mitmachen: `CONTRIBUTING.md`
-- Sicherheit: `SECURITY.md`
-- Verhaltensregeln: `CODE_OF_CONDUCT.md`
-- Release-Checkliste: `OPEN_SOURCE_CHECKLIST.md`
+- License: `MIT` (see `LICENSE`)
+- Contributing: `CONTRIBUTING.md`
+- Security: `SECURITY.md`
+- Code of Conduct: `CODE_OF_CONDUCT.md`
+- Release checklist: `OPEN_SOURCE_CHECKLIST.md`
